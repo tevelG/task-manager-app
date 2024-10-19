@@ -1,0 +1,53 @@
+.tasks-menu {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 2rem;
+
+    &__filters {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &--text {
+            font-size: 1.5rem;
+        }
+
+        &__list {
+            display: flex;
+            gap: 0.8rem;
+
+            &--button {
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+                border: 1px solid ;
+                color: rgb(4, 0, 255);
+                background-color: #36a1e9af;
+                font-weight: bold;
+                cursor: pointer;
+
+                @include task-status-color;
+
+                // &-selected {
+                //     @include task-status-color;
+                // }
+            }
+        }
+
+        &--button-add {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            color: rgb(4, 0, 255);
+            background-color: #36a1e948;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+
+            padding: 1rem;
+
+            cursor: pointer;
+        }
+    }
+}

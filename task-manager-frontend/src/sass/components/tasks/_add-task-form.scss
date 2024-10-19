@@ -1,0 +1,30 @@
+.add-task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+
+        & label {
+            font-size: 1.5rem;
+        }
+
+        & input, select {
+            padding: 0.5rem;
+        }
+    }
+
+    & button {
+        align-self: center;
+        width: max-content;
+
+        padding: 0.5rem;
+        border: 1px solid rgb(4, 0, 255);
+        border-radius: 4px;
+        color: rgb(4, 0, 255);
+        background-color: #36a1e948;
+        font-weight: bold;
+    }
+}

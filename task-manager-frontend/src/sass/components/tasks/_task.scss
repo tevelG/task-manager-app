@@ -1,0 +1,50 @@
+.task {
+    padding-left: 0.5rem;
+    border-radius: 4px;
+
+    @include task-status-color;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 1rem;
+        background-color: #ffffff;
+        color: rgba(0, 0, 0, 88);
+
+        &__text {
+
+            &__header {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+        
+                font-size: 1.2rem;
+        
+                &--status {
+                    padding: 0.2rem 0.5rem;
+                    border-radius: 1rem;
+        
+                    @include task-status-color;
+                }
+            }
+
+            &--description {
+                color: rgba(0, 0, 0, 0.7);
+            }
+        }
+
+        &__icons {
+            display: flex;
+            gap: 0.5rem;
+
+            & svg {
+                font-size: 2rem;
+                cursor: pointer;
+            }
+        }
+    }
+}

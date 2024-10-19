@@ -1,0 +1,16 @@
+@mixin task-status-color {
+    &-red {
+        background-color: #fa0f0f6e;
+        color: red;
+    }
+
+    &-orange {
+        background-color: rgba(255, 166, 0, 0.623);
+        color: rgb(255, 166, 0);
+    }
+
+    &-green {
+        background-color: rgba(26, 236, 26, 0.589);
+        color: green;
+    }
+}
