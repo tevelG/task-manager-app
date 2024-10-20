@@ -1,8 +1,9 @@
 .tasks-menu {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 
     &__filters {
         display: flex;
@@ -10,7 +11,7 @@
         gap: 0.5rem;
 
         &--text {
-            font-size: 1.5rem;
+            font-size: 2rem;
         }
 
         &__list {
@@ -23,6 +24,7 @@
                 border: 1px solid ;
                 color: rgb(4, 0, 255);
                 background-color: #36a1e9af;
+                font-size: 1.5rem;
                 font-weight: bold;
                 cursor: pointer;
 
@@ -43,6 +45,7 @@
             background-color: #36a1e948;
             border: none;
             border-radius: 4px;
+            font-size: 1.5rem;
             font-weight: bold;
 
             padding: 1rem;

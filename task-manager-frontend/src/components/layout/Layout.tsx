@@ -9,22 +9,32 @@ import AddTaskForm from "../tasks/AddTaskForm";
 
 const Layout = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
-    const [filterStatus, setFilterStatus] = useState<TaskStatus | null>(null);
+    const [filter, setFilter] = useState({
+        status: null as TaskStatus | null,
+        searchTerm: ""
+    });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [taskToEdit, setTaskToEdit] = useState<Task | undefined>(undefined);
 
-    const fetchTasks = async (status?: TaskStatus) => {
+    const fetchTasks = async (status?: TaskStatus, search?: string) => {
         try {
             let url = 'tasks';
+            const params = new URLSearchParams();
+
             if (status) {
-                url += `?status=${encodeURIComponent(status)}`;
+                params.append('status', status);
             }
-            const response = await apiClient.get(url);
+
+            if (search) {
+                params.append('search', search);
+            }
+
+            const response = await apiClient.get(`${url}?${params.toString()}`);
             setTasks(response.data);
         } catch (error) {
             console.log('Error fetching tasks', error);
         }
-    }
+    };
 
     const handleAddTask = async (title: string, description: string, status: TaskStatus) => {
         try {
@@ -72,17 +82,31 @@ const Layout = () => {
     };
 
     const handleFilterChange = (status: TaskStatus | null) => {
-        setFilterStatus(status);
-    }
+        setFilter(prevFilter => ({
+            ...prevFilter,
+            status
+        }));
+    };
+
+    const handleSearchChange = (searchTerm: string) => {
+        setFilter(prevFilter => ({
+            ...prevFilter,
+            searchTerm
+        }));
+    };
 
     useEffect(() => {
-        fetchTasks(filterStatus || undefined)
-    }, [filterStatus]);
+        fetchTasks(filter.status || undefined, filter.searchTerm);
+    }, [filter]);
     
     return (
         <div className="layout">
             <Header />
-            <TasksMenu handleFilterChange={handleFilterChange} onAddTask={handleAddTask}/>
+            <TasksMenu 
+                handleFilterChange={handleFilterChange} 
+                handleSearchChange={handleSearchChange} 
+                onAddTask={handleAddTask}
+            />
             <TasksList 
                 tasks={tasks}
                 onDeleteTask={handleDeleteTask} 
