@@ -9,11 +9,18 @@ import { UpdateTaskDto } from 'src/dto/update-task.dto';
 export class TaskService {
     constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
 
-    async findAll(status?: TaskStatus): Promise<Task[]> {
+    async findAll(status?: TaskStatus, search?: string): Promise<Task[]> {
+        const query: any = {};
+
         if (status) {
-            return this.taskModel.find({ status }).exec();
+            query.status = status;
         }
-        return this.taskModel.find().exec();
+
+        if (search) {
+            query.title = { $regex: search, $options: 'i'};
+        }
+
+        return this.taskModel.find(query).exec();
     }
 
     async findOne(id: string): Promise<Task> {

@@ -11,7 +11,7 @@ async function bootstrap() {
     credentials: true,  // If you are sending cookies or authentication tokens
   });
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({}));
 
   await app.listen(3000);
 }

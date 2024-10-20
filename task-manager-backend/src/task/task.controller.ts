@@ -9,8 +9,8 @@ export class TaskController {
     constructor(private readonly taskService: TaskService) {}
 
     @Get()
-    findAll(@Query('status') status?: TaskStatus): Promise<Task[]> {
-        return this.taskService.findAll(status);
+    findAll(@Query('status') status?: TaskStatus, @Query('search') search?: string): Promise<Task[]> {
+        return this.taskService.findAll(status, search);
     }
 
     @Get(':id')
