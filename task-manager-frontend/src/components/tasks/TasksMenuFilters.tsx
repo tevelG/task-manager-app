@@ -15,7 +15,7 @@ const TasksMenuFilters = ({ handleFilterChange }: TasksMenuFiltersProps) => {
 
     const handleClick = (status: FilterStatusType) => {
         handleFilterChange(status === 'all' ? null : status); 
-        // setSelectedStatus(status);
+        setSelectedStatus(status);
     };
 
     console.log('here')
@@ -26,7 +26,6 @@ const TasksMenuFilters = ({ handleFilterChange }: TasksMenuFiltersProps) => {
             <div className="tasks-menu__filters__list">
                 {filterStatuses.map((status) => {
                     const statusColor = status !== 'all' ? getStatusColor(status): undefined;
-                    // console.log(status, selectedStatus)
 
                     return (
                         <button 
@@ -34,7 +33,7 @@ const TasksMenuFilters = ({ handleFilterChange }: TasksMenuFiltersProps) => {
                             className={classNames(
                                 "tasks-menu__filters__list--button", 
                                 `tasks-menu__filters__list--button-${statusColor}`,
-                                // {"tasks-menu__filters__list--button-selected": status === selectedStatus}
+                                status === selectedStatus && "tasks-menu__filters__list--button-selected"
                             )}
                             onClick={() => handleClick(status)} 
                         >
